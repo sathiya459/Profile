@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sathiya Moorthi — Cloud Security Leader</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #070a12;
+      --surface: #0d1120;
+      --surface2: #111827;
+      --border: #1e2a40;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --accent3: #34d399;
+      --gold: #f59e0b;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ══════════════════════════════════════
+       NETWORK CANVAS — full-page background
+    ══════════════════════════════════════ */
+    #network-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* everything above the canvas */
+    nav, section, footer { position: relative; z-index: 2; }
+
+    /* ══════════════════════════════════════
+       NAV
+    ══════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 3rem;
+      backdrop-filter: blur(20px);
+      background: rgba(7,10,18,0.80);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .nav-badge {
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-top: -2px;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      align-items: center;
+      padding: 8rem 5rem 4rem;
+      gap: 4rem;
+    }
+
+    .hero-text { position: relative; }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .hero-label::before { content: ''; width: 28px; height: 1px; background: var(--accent); }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.35s forwards;
+    }
+
+    .hero-role {
+      font-size: clamp(0.9rem, 1.6vw, 1.15rem);
+      color: var(--muted);
+      font-style: italic;
+      font-family: var(--font-display);
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s forwards;
+    }
+    .hero-role span { color: var(--accent2); font-style: normal; font-weight: 500; }
+
+    .hero-bio {
+      font-size: 0.96rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 2.2rem;
+      line-height: 1.85;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.65s forwards;
+    }
+    .hero-bio strong { color: var(--text); font-weight: 500; }
+
+    /* pill badges row */
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 2.4rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+    .pill {
+      padding: 0.28rem 0.85rem;
+      border-radius: 100px;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+      border: 1px solid;
+    }
+    .pill-blue  { border-color: rgba(56,189,248,0.45); color: var(--accent);  background: rgba(56,189,248,0.07); }
+    .pill-violet{ border-color: rgba(129,140,248,0.45); color: var(--accent2); background: rgba(129,140,248,0.07); }
+    .pill-green { border-color: rgba(52,211,153,0.45);  color: var(--accent3); background: rgba(52,211,153,0.07); }
+    .pill-gold  { border-color: rgba(245,158,11,0.45);  color: var(--gold);    background: rgba(245,158,11,0.07); }
+
+    .hero-cta {
+      display: flex; gap: 1rem;
+      opacity: 0; animation: fadeUp 0.8s 0.95s forwards;
+    }
+    .btn-primary, .btn-outline {
+      padding: 0.85rem 2rem;
+      border-radius: 3px;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.25s;
+    }
+    .btn-primary { background: var(--accent); color: #070a12; border: none; }
+    .btn-primary:hover { background: #67d2fc; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(56,189,248,0.28); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* ── HERO VISUAL CARD ── */
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.4rem;
+      opacity: 0;
+      animation: fadeIn 1s 0.6s forwards;
+    }
+
+    /* Photo frame */
+    .photo-frame {
+      position: relative;
+      width: 240px;
+      height: 240px;
+    }
+    .photo-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--accent), var(--accent2), var(--accent3), var(--accent));
+      animation: spin 14s linear infinite;
+      z-index: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .photo-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--surface2);
+      border: 4px solid var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* When you add your photo, set src on the <img> tag.
+       The fallback initials will hide automatically. */
+    .photo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .photo-fallback {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      text-align: center;
+    }
+    .photo-fallback small {
+      display: block;
+      font-size: 0.5rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+      font-family: var(--font-body);
+    }
+
+    /* pulse ring */
+    .photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 1px solid rgba(56,189,248,0.18);
+      animation: pulseRing 3s ease-in-out infinite;
+    }
+    @keyframes pulseRing {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.06); opacity: 0; }
+    }
+
+    /* Info card */
+    .profile-card {
+      background: rgba(13,17,32,0.85);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.4rem 1.8rem;
+      width: 100%;
+      backdrop-filter: blur(12px);
+    }
+    .profile-card-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .profile-card-title {
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+    .pstat-num { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+    .pstat-lbl { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-top: 1px; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ══════════════════════════════════════
+       SHARED SECTION STYLES
+    ══════════════════════════════════════ */
+    section { padding: 6rem 5rem; }
+    .section-label { font-size: 0.66rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .section-title { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.7rem); font-weight: 700; margin-bottom: 0.8rem; line-height: 1.15; }
+    .section-intro { color: var(--muted); max-width: 640px; margin-bottom: 3rem; font-size: 0.94rem; line-height: 1.8; }
+    .section-divider { width: 48px; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); margin-bottom: 3rem; }
+
+    /* ══════════════════════════════════════
+       ABOUT
+    ══════════════════════════════════════ */
+    #about { background: rgba(13,17,32,0.92); backdrop-filter: blur(8px); }
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4.5rem; align-items: start; }
+    .about-text p { color: var(--muted); margin-bottom: 1.1rem; font-size: 0.95rem; }
+    .about-text strong { color: var(--text); font-weight: 500; }
+    .skills-section-title { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent3); margin-bottom: 1rem; margin-top: 2rem; }
+    .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag { padding: 0.32rem 0.85rem; border: 1px solid var(--border); border-radius: 2px; font-size: 0.74rem; color: var(--muted); letter-spacing: 0.04em; transition: all 0.2s; cursor: default; }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Roadmap */
+    .roadmap-title { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.8rem; }
+    .ciso-roadmap { display: flex; flex-direction: column; }
+    .roadmap-item { display: flex; gap: 1.2rem; padding-bottom: 1.8rem; position: relative; }
+    .roadmap-item:not(:last-child)::before { content: ''; position: absolute; left: 14px; top: 30px; bottom: 0; width: 1px; background: var(--border); }
+    .roadmap-dot { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; margin-top: 2px; }
+    .dot-done { background: rgba(52,211,153,0.12); color: var(--accent3); border: 1px solid rgba(52,211,153,0.3); }
+    .dot-now  { background: rgba(56,189,248,0.14); color: var(--accent);  border: 1px solid rgba(56,189,248,0.4); }
+    .dot-next { background: rgba(129,140,248,0.10); color: var(--accent2); border: 1px solid rgba(129,140,248,0.3); }
+    .dot-goal { background: rgba(245,158,11,0.10); color: var(--gold);    border: 1px solid rgba(245,158,11,0.3); }
+    .roadmap-phase { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.15rem; }
+    .roadmap-role { font-family: var(--font-display); font-size: 0.96rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .roadmap-desc { font-size: 0.77rem; color: var(--muted); line-height: 1.6; }
+
+    /* ══════════════════════════════════════
+       EXPERIENCE
+    ══════════════════════════════════════ */
+    #experience { background: transparent; }
+    .timeline { position: relative; }
+    .timeline::before { content: ''; position: absolute; left: 170px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, var(--border) 8%, var(--border) 92%, transparent); }
+    .exp-item { display: grid; grid-template-columns: 170px 1fr; gap: 0 3rem; margin-bottom: 4rem; position: relative; opacity: 0; transform: translateX(-18px); transition: opacity 0.6s, transform 0.6s; }
+    .exp-item.visible { opacity: 1; transform: translateX(0); }
+    .exp-dates { text-align: right; padding-top: 0.1rem; }
+    .exp-year { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+    .exp-duration { font-size: 0.64rem; color: var(--muted); margin-top: 0.15rem; }
+    .exp-level { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.6rem; padding: 0.2rem 0.5rem; border-radius: 2px; display: inline-block; }
+    .level-mgr  { background: rgba(129,140,248,0.12); color: var(--accent2); border: 1px solid rgba(129,140,248,0.25); }
+    .level-lead { background: rgba(56,189,248,0.10);  color: var(--accent);  border: 1px solid rgba(56,189,248,0.2); }
+    .level-eng  { background: rgba(52,211,153,0.10);  color: var(--accent3); border: 1px solid rgba(52,211,153,0.2); }
+    .exp-dot { position: absolute; left: 164px; top: 8px; width: 13px; height: 13px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); z-index: 1; }
+    .exp-dot.now { background: var(--accent2); box-shadow: 0 0 14px rgba(129,140,248,0.55); }
+    .exp-content { padding-left: 2rem; }
+    .exp-live { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.6rem; }
+    .exp-live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); animation: livepulse 1.5s ease-in-out infinite; }
+    @keyframes livepulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.4)} }
+    .exp-company { font-size: 0.67rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent3); margin-bottom: 0.25rem; }
+    .exp-role { font-family: var(--font-display); font-size: 1.28rem; font-weight: 700; margin-bottom: 0.8rem; line-height: 1.3; }
+    .exp-impact { font-size: 0.82rem; color: var(--accent); margin-bottom: 0.9rem; font-style: italic; border-left: 2px solid rgba(56,189,248,0.3); padding-left: 0.8rem; }
+    .exp-bullets { list-style: none; margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 0.42rem; }
+    .exp-bullets li { font-size: 0.84rem; color: var(--muted); padding-left: 1.4rem; position: relative; }
+    .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.72rem; top: 2px; }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 0.42rem; }
+    .exp-tag { font-size: 0.65rem; padding: 0.2rem 0.68rem; background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.16); color: var(--accent); border-radius: 2px; }
+
+    /* ══════════════════════════════════════
+       CERTIFICATIONS
+    ══════════════════════════════════════ */
+    #certifications { background: rgba(13,17,32,0.92); backdrop-filter: blur(8px); }
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+
+    /* Badge card */
+    .cert-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+    .cert-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.4); }
+
+    .cert-card-top {
+      padding: 1.6rem 1.6rem 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .cert-icon {
+      width: 56px; height: 56px; min-width: 56px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .cert-meta { flex: 1; }
+    .cert-issuer { font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+    .cert-name { font-family: var(--font-display); font-size: 1rem; font-weight: 700; line-height: 1.25; margin-bottom: 0.25rem; }
+    .cert-code { font-size: 0.65rem; color: var(--muted); }
+
+    .cert-card-bottom {
+      padding: 0.9rem 1.6rem 1.2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cert-year-badge {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.7rem;
+      border-radius: 100px;
+      border: 1px solid;
+    }
+    .cert-status {
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .cert-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
+    .status-earned .cert-status::before { background: var(--accent3); }
+    .status-planned .cert-status { color: var(--gold); }
+    .status-planned .cert-status::before { background: var(--gold); animation: livepulse 2s ease-in-out infinite; }
+
+    /* Colour themes per cert */
+    .cert-ms    { --c: #0078d4; --clight: rgba(0,120,212,0.12); --cborder: rgba(0,120,212,0.3); }
+    .cert-ms-arch { --c: #5c2d91; --clight: rgba(92,45,145,0.14); --cborder: rgba(92,45,145,0.35); }
+    .cert-aws   { --c: #ff9900; --clight: rgba(255,153,0,0.12);  --cborder: rgba(255,153,0,0.3); }
+    .cert-ec2   { --c: #e53e3e; --clight: rgba(229,62,62,0.12);  --cborder: rgba(229,62,62,0.3); }
+    .cert-gcp   { --c: #34a853; --clight: rgba(52,168,83,0.12);  --cborder: rgba(52,168,83,0.3); }
+    .cert-isc2  { --c: #1a56db; --clight: rgba(26,86,219,0.12);  --cborder: rgba(26,86,219,0.3); }
+    .cert-edu   { --c: #64748b; --clight: rgba(100,116,139,0.10); --cborder: rgba(100,116,139,0.25); }
+
+    .cert-card .cert-icon { background: var(--clight); }
+    .cert-card .cert-name { color: var(--c); filter: brightness(1.25); }
+    .cert-card-top { border-top: 3px solid var(--c); }
+    .cert-year-badge { border-color: var(--cborder); color: var(--c); background: var(--clight); }
+    .status-earned .cert-status { color: var(--accent3); }
+
+    /* planned dim overlay */
+    .cert-card.planned { opacity: 0.88; }
+    .cert-card.planned::before {
+      content: 'IN PROGRESS';
+      position: absolute;
+      top: 12px; right: 12px;
+      font-size: 0.55rem;
+      letter-spacing: 0.16em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      background: rgba(245,158,11,0.12);
+      border: 1px solid rgba(245,158,11,0.3);
+      color: var(--gold);
+    }
+    .cert-card.planned-future::before { content: 'PLANNED'; }
+
+    /* ══════════════════════════════════════
+       CONTACT
+    ══════════════════════════════════════ */
+    #contact { background: transparent; text-align: center; }
+    .contact-sub { color: var(--muted); max-width: 520px; margin: 0 auto 3rem; font-size: 0.95rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+    .contact-link { display: flex; align-items: center; gap: 0.6rem; padding: 1rem 1.8rem; border: 1px solid var(--border); border-radius: 4px; text-decoration: none; color: var(--text); font-size: 0.8rem; letter-spacing: 0.04em; transition: all 0.22s; background: rgba(13,17,32,0.7); }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(56,189,248,0.12); }
+
+    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; background: rgba(7,10,18,0.9); }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 960px) {
+      nav { padding: 1rem 1.4rem; }
+      .nav-links { gap: 1.2rem; }
+      #hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; }
+      .hero-visual { display: none; }
+      section { padding: 4rem 2rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .timeline::before { left: 0; }
+      .exp-item { grid-template-columns: 1fr; }
+      .exp-dates { text-align: left; }
+      .exp-dot { display: none; }
+      .exp-content { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANIMATED NETWORK BACKGROUND -->
+<canvas id="network-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    Sathiya Moorthi
+    <span class="nav-badge">Cloud Security · Azure · AWS · GCP</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <p class="hero-label">Cloud Security Leader · Chennai, India</p>
+    <h1 class="hero-name">Sathiya<br/>Moorthi.</h1>
+    <p class="hero-role">Assistant Manager — Cloud Security Auditor &nbsp;|&nbsp; <span>9+ Years in Cloud Security</span></p>
+    <p class="hero-bio">
+      Specialising in <strong>multi-cloud security audits, posture management, and workload protection</strong> across Azure, AWS, and GCP.
+      Currently leading enterprise security assessments at Wipro aligned to <strong>NIST controls</strong> — covering CSPM, CWPP, container security, and Kubernetes across regulated industries.
+      Certified <strong>Microsoft Cybersecurity Architect</strong> with a track record of building security programs that scale.
+    </p>
+
+    <div class="badge-row">
+      <span class="pill pill-violet">SC-100 · Cybersecurity Architect</span>
+      <span class="pill pill-blue">AZ-500 · Azure Security</span>
+      <span class="pill pill-gold">AWS Architect Associate</span>
+      <span class="pill pill-green">CEH · Ethical Hacker</span>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#experience" class="btn-primary">View My Journey</a>
+      <a href="#contact" class="btn-outline">Let's Connect</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <!-- ════════════════════════════════════════
+         PHOTO: Replace the placeholder below.
+         1) Save your photo as  profile.jpg
+            next to this  index.html  file.
+         2) Change  src=""  to  src="profile.jpg"
+         3) Delete the .photo-fallback <div>
+    ════════════════════════════════════════ -->
+    <div class="photo-frame">
+      <div class="photo-ring"></div>
+      <div class="photo-inner">
+         <img src="profile.jpg" alt="Sathiya Moorthi"> 
+        <!--<div class="photo-fallback">
+          SM
+          <small>Cloud Security</small>
+        </div>-->
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-card-name">Sathiya Moorthi</div>
+      <div class="profile-card-title">Assistant Manager · Cloud Security Auditor · Wipro</div>
+      <div class="profile-stats">
+        <div>
+          <div class="pstat-num">9+</div>
+          <div class="pstat-lbl">Years Exp.</div>
+        </div>
+        <div>
+          <div class="pstat-num">3</div>
+          <div class="pstat-lbl">Cloud Platforms</div>
+        </div>
+        <div>
+          <div class="pstat-num">4</div>
+          <div class="pstat-lbl">Certifications</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">Leadership Profile</p>
+  <h2 class="section-title">From engineer to security leader.</h2>
+  <div class="section-divider"></div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I am a <strong>Cloud Security professional with 9+ years of progressive experience</strong> spanning the full spectrum of cloud security — from engineering firewalls and key vaults at the hands-on level, to owning enterprise-wide security audits and driving compliance governance as an Assistant Manager.
+      </p>
+      <p>
+        My work spans <strong>Banking, Finance, Insurance, Aviation, Education, and Food &amp; Beverages</strong> industries — giving me broad exposure to the risk landscapes, regulatory pressures, and security maturity challenges that security leaders navigate at the board level.
+      </p>
+      <p>
+        I have secured environments across <strong>Azure, AWS, and GCP</strong>, governed 150+ cloud accounts, and built security programs aligned to NIST CSF, ISO 27001, CIS Controls, SOC 2, PCI-DSS, and FACTA. I combine <strong>deep technical expertise</strong> in cloud security tools and automation with the <strong>governance and communication skills</strong> that define effective security leadership.
+      </p>
+
+      <p class="skills-section-title">Core Security Competencies</p>
+      <div class="skills-list">
+        <span class="skill-tag">Azure Security</span>
+        <span class="skill-tag">AWS Security</span>
+        <span class="skill-tag">GCP Security</span>
+        <span class="skill-tag">CSPM / CWPP</span>
+        <span class="skill-tag">Cloud Security Audits</span>
+        <span class="skill-tag">Container &amp; K8s Security</span>
+        <span class="skill-tag">NIST CSF</span>
+        <span class="skill-tag">ISO 27001</span>
+        <span class="skill-tag">CIS Benchmarks</span>
+        <span class="skill-tag">SOC 2 / PCI-DSS</span>
+        <span class="skill-tag">IAM &amp; Zero Trust</span>
+        <span class="skill-tag">Azure Firewall</span>
+        <span class="skill-tag">Defender for Cloud</span>
+        <span class="skill-tag">SIEM (FireEye / Sentinel)</span>
+        <span class="skill-tag">WAF (Imperva / Azure)</span>
+        <span class="skill-tag">DevSecOps · Terraform</span>
+        <span class="skill-tag">Incident Response</span>
+        <span class="skill-tag">GRC &amp; Compliance</span>
+        <span class="skill-tag">Python Automation</span>
+      </div>
+    </div>
+
+    <!-- ROADMAP -->
+    <div>
+      <p class="roadmap-title">Career Progression Roadmap</p>
+      <div class="ciso-roadmap">
+        <div class="roadmap-item">
+          <div class="roadmap-dot dot-done">✓</div>
+          <div>
+            <div class="roadmap-phase">2015 – 2016 · Foundation</div>
+            <div class="roadmap-role">Security Analyst — Cognizant</div>
+            <div class="roadmap-desc">AWS security operations, SIEM, access reviews, audit evidence — built the fundamentals.</div>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-dot dot-done">✓</div>
+          <div>
+            <div class="roadmap-phase">2016 – 2021 · Engineering Mastery</div>
+            <div class="roadmap-role">Lead Security Engineer — Cognizant</div>
+            <div class="roadmap-desc">Owned AWS cybersecurity framework for enterprise. Led GRC programs across 150+ accounts, drove ISO 27001 and CIS compliance.</div>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-dot dot-done">✓</div>
+          <div>
+            <div class="roadmap-phase">2021 – 2023 · Consulting</div>
+            <div class="roadmap-role">Cloud Security Consultant — Capgemini</div>
+            <div class="roadmap-desc">Delivered Azure security architecture across 40+ subscriptions. Automated security controls with Terraform in DevSecOps pipelines.</div>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-dot dot-now">▶</div>
+          <div>
+            <div class="roadmap-phase">2023 – Present · Leadership</div>
+            <div class="roadmap-role">Assistant Manager — Wipro</div>
+            <div class="roadmap-desc">Leading multi-cloud security audits across AWS, Azure, GCP. NIST-aligned posture and workload assessments at enterprise scale.</div>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-dot dot-next">→</div>
+          <div>
+            <div class="roadmap-phase">Next Step</div>
+            <div class="roadmap-role">Head of Cloud Security / VP Security</div>
+            <div class="roadmap-desc">Owning a security function — strategy, team, budget, and executive accountability.</div>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-dot dot-goal">★</div>
+          <div>
+            <div class="roadmap-phase">Aspiration</div>
+            <div class="roadmap-role">Chief Information Security Officer</div>
+            <div class="roadmap-desc">Driving enterprise security vision, risk governance, and cyber resilience for a global organisation.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Career Journey</p>
+  <h2 class="section-title">Progressive leadership in cloud security.</h2>
+  <p class="section-intro">Each role a deliberate step up — from technical engineering to program ownership to multi-cloud governance at enterprise scale.</p>
+  <div class="section-divider"></div>
+
+  <div class="timeline">
+
+    <!-- WIPRO -->
+    <div class="exp-item">
+      <div class="exp-dates">
+        <div class="exp-year">2023 — Now</div>
+        <div class="exp-duration">2+ yrs</div>
+        <div class="exp-level level-mgr">Asst. Manager</div>
+      </div>
+      <div class="exp-dot now"></div>
+      <div class="exp-content">
+        <div class="exp-live">Currently Here</div>
+        <p class="exp-company">Wipro Limited · Chennai, India</p>
+        <h3 class="exp-role">Assistant Manager — Cloud Security Auditor</h3>
+        <p class="exp-impact">"Leading multi-cloud security audits across AWS, Azure, and GCP — assessing posture and workload deviation against NIST controls at enterprise scale."</p>
+        <ul class="exp-bullets">
+          <li>Conduct enterprise cloud security audits across AWS, Azure, and GCP — evaluating CSPM posture, cloud workload protection (CWPP), and container &amp; Kubernetes security.</li>
+          <li>Assess cloud environments for security posture and workload deviation from Wipro security standards and NIST CSF control requirements.</li>
+          <li>Drive remediation governance with cloud operations and engineering stakeholders — tracking findings, prioritising risk, and enforcing resolution SLAs.</li>
+          <li>Produce executive-level security posture reports for client and Wipro leadership, translating technical risk into business impact language.</li>
+          <li>Evaluate IAM, network segmentation, encryption, logging, and container security posture across three cloud platforms simultaneously.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Multi-Cloud Audits</span><span class="exp-tag">CSPM</span><span class="exp-tag">CWPP</span><span class="exp-tag">Container Security</span><span class="exp-tag">Kubernetes Security</span><span class="exp-tag">NIST CSF</span><span class="exp-tag">AWS · Azure · GCP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAPGEMINI -->
+    <div class="exp-item">
+      <div class="exp-dates">
+        <div class="exp-year">2021 — 2023</div>
+        <div class="exp-duration">~2 yrs</div>
+        <div class="exp-level level-lead">Consultant</div>
+      </div>
+      <div class="exp-dot"></div>
+      <div class="exp-content">
+        <p class="exp-company">Capgemini Technology Solutions · Chennai, India</p>
+        <h3 class="exp-role">Cloud Security Consultant</h3>
+        <p class="exp-impact">"Architected and operationalised Azure security controls — spanning firewall governance, CSPM, application security, and DevSecOps automation across 40+ subscriptions."</p>
+        <ul class="exp-bullets">
+          <li>Governed Azure Firewall at scale — authored NAT, network and application rules; log analysis via Monitor/Log Analytics; P1/P2 incident management with full RCA.</li>
+          <li>Managed Azure Key Vault lifecycle — enforced RBAC least privilege, automated key rotation and certificate management, configured private endpoints and purge protection.</li>
+          <li>Operated Application Gateway with WAF — onboarded domains, SSL certificate lifecycle, custom WAF policies, blocking malicious IP ranges.</li>
+          <li>Led Defender for Cloud program across 40+ Azure subscriptions — addressed CSPM and CWPP recommendations, tracked secure score, administered Azure Policies.</li>
+          <li>Integrated Palo Alto / Cortex Data Lake with MDCA for advanced threat detection via Syslog.</li>
+          <li>Automated firewall rules, policy assignments, and Application Gateway settings via Terraform in DevOps pipelines.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Azure Firewall</span><span class="exp-tag">Key Vault</span><span class="exp-tag">Defender for Cloud</span><span class="exp-tag">App Gateway / WAF</span><span class="exp-tag">Terraform</span><span class="exp-tag">MDCA</span><span class="exp-tag">Azure Policy</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- COGNIZANT -->
+    <div class="exp-item">
+      <div class="exp-dates">
+        <div class="exp-year">2016 — 2021</div>
+        <div class="exp-duration">5 yrs</div>
+        <div class="exp-level level-eng">Lead Engineer</div>
+      </div>
+      <div class="exp-dot"></div>
+      <div class="exp-content">
+        <p class="exp-company">Cognizant Technology Solutions · Chennai, India</p>
+        <h3 class="exp-role">Lead Security Engineer — GRC &amp; Cloud Security</h3>
+        <p class="exp-impact">"Built and owned the AWS cybersecurity framework — governing GRC programs, managing a full security toolchain across 150+ AWS accounts, and driving continuous compliance."</p>
+        <ul class="exp-bullets">
+          <li>Established AWS cybersecurity framework and shared responsibility model with client leadership — aligned to ISO 27001, FACTA, and CIS controls.</li>
+          <li>Owned WAF (Imperva Incapsula), AV (Sophos Central), SIEM (FireEye Helix/HX/ETP), and NGFW (Zscaler) for enterprise clients across multiple verticals.</li>
+          <li>Managed AWS GuardDuty across 150+ accounts — ensured SIEM log ingestion, analysed alerts, and delivered hardening recommendations to strengthen enterprise defense.</li>
+          <li>Administered Cloud Guard Dome9 — created compliance rulesets, led bi-weekly governance reviews, and produced monthly compliance assessments.</li>
+          <li>Authored Python automation scripts for Imperva onboarding, IOC validation (VirusTotal), and Dome9 compliance reporting.</li>
+          <li>Delivered recurring audit evidence for ISO 27001, FACTA, PCI-DSS, and CIS control requirements.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">AWS Security</span><span class="exp-tag">FireEye SIEM</span><span class="exp-tag">Imperva WAF</span><span class="exp-tag">Sophos AV</span><span class="exp-tag">Zscaler NGFW</span><span class="exp-tag">GuardDuty</span><span class="exp-tag">ISO 27001 / CIS</span><span class="exp-tag">Python</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <p class="section-label">Credentials</p>
+  <h2 class="section-title">Certifications &amp; Education</h2>
+  <p class="section-intro">An active certification path from security engineering to architecture — with CISSP and CCSP in the pipeline to complete the leadership credential stack.</p>
+  <div class="section-divider"></div>
+
+  <div class="cert-grid">
+
+    <!-- SC-100 -->
+    <div class="cert-card cert-ms-arch status-earned">
+      <div class="cert-card-top">
+        <div class="cert-icon">🏛️</div>
+        <div class="cert-meta">
+          <div class="cert-issuer">Microsoft · Expert Level</div>
+          <div class="cert-name">Microsoft Cybersecurity Architect</div>
+          <div class="cert-code">SC-100</div>
+        </div>
+      </div>
+      <div class="cert-card-bottom">
+        <span class="cert-year-badge">2025</span>
+        <span class="cert-status">Earned</span>
+      </div>
+    </div>
+
+    <!-- AZ-500 -->
+    <div class="cert-card cert-ms status-earned">
+      <div class="cert-card-top">
+        <div class="cert-icon">🔷</div>
+        <div class="cert-meta">
+          <div class="cert-issuer">Microsoft · Associate Level</div>
+          <div class="cert-name">Azure Security Engineer Associate</div>
+          <div class="cert-code">AZ-500</div>
+        </div>
+      </div>
+      <div class="cert-card-bottom">
+        <span class="cert-year-badge">2024</span>
+        <span class="cert-status">Earned</span>
+      </div>
+    </div>
+
+    <!-- AWS SAA -->
+    <div class="cert-card cert-aws status-earned">
+      <div class="cert-card-top">
+        <div class="cert-icon">☁️</div>
+        <div class="cert-meta">
+          <div class="cert-issuer">Amazon Web Services · Associate</div>
+          <div class="cert-name">AWS Certified Solutions Architect</div>
+          <div class="cert-code">SAA-C03</div>
+        </div>
+      </div>
+      <div class="cert-card-bottom">
+        <span class="cert-year-badge">2021</span>
+        <span class="cert-status">Earned</span>
+      </div>
+    </div>
+
+    <!-- CEH -->
+    <div class="cert-card cert-ec2 status-earned">
+      <div class="cert-card-top">
+        <div class="cert-icon">🔐</div>
+        <div class="cert-meta">
+          <div class="cert-issuer">EC-Council · Practitioner</div>
+          <div class="cert-name">Certified Ethical Hacker</div>
+          <div class="cert-code">CEH v11</div>
+        </div>
+      </div>
+      <div class="cert-card-bottom">
+        <span class="cert-year-badge">2019</span>
+        <span class="cert-status">Earned</span>
+      </div>
+    </div>
+
+    <!-- CISSP — Planned -->
+    <div class="cert-card cert-isc2 planned status-planned">
+      <div class="cert-card-top">
+        <div class="cert-icon">🛡️</div>
+        <div class="cert-meta">
+          <div class="cert-issuer">(ISC)² · Advanced Professional</div>
+          <div class="cert-name">Certified Information Systems Security Professional</div>
+          <div class="cert-code">CISSP</div>
+        </div>
+      </div>
+      <div class="cert-card-bottom">
+        <span class="cert-year-badge">2025–26</span>
+        <span class="cert-status">In Progress</span>
+      </div>
+    </div>
+
+    <!-- CCSP — Planned -->
+    <div class="cert-card cert-isc2 planned planned-future status-planned">
+      <div class="cert-card-top">
+        <div class="cert-icon">☁️🔒</div>
+        <div class="cert-meta">
+          <div class="cert-issuer">(ISC)² · Cloud Specialty</div>
+          <div class="cert-name">Certified Cloud Security Professional</div>
+          <div class="cert-code">CCSP</div>
+        </div>
+      </div>
+      <div class="cert-card-bottom">
+        <span class="cert-year-badge">2026</span>
+        <span class="cert-status">Planned</span>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="cert-card cert-edu status-earned">
+      <div class="cert-card-top">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-meta">
+          <div class="cert-issuer">Anna University, Chennai</div>
+          <div class="cert-name">B.E. Computer Science &amp; Engineering</div>
+          <div class="cert-code">Graduated 2016</div>
+        </div>
+      </div>
+      <div class="cert-card-bottom">
+        <span class="cert-year-badge">2012–2016</span>
+        <span class="cert-status">Completed</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Let's Connect</p>
+  <h2 class="section-title">Open to the right conversations.</h2>
+  <p class="contact-sub">
+    Interested in senior cloud security leadership roles, consulting engagements, or conversations about cloud security governance and multi-cloud risk strategy.
+  </p>
+  <div class="contact-links">
+    <a href="mailto:sathiyamoorthissr@gmail.com" class="contact-link">✉ &nbsp;sathiyamoorthissr@gmail.com</a>
+    <a href="https://www.linkedin.com/in/sathiyamoorthissr" target="_blank" class="contact-link">in &nbsp;linkedin.com/in/sathiyamoorthissr</a>
+    <a href="tel:+919894919609" class="contact-link">☎ &nbsp;+91 98949 19609</a>
+    <a href="#" class="contact-link">↓ &nbsp;Download Resume</a>
+  </div>
+</section>
+
+<footer>
+  <p>Sathiya Moorthi &nbsp;·&nbsp; Cloud Security Leader &nbsp;·&nbsp; Chennai, India &nbsp;·&nbsp; 2025</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════════
+     NETWORK ANIMATION SCRIPT
+════════════════════════════════════════════════ -->
+<script>
+(function() {
+  const canvas = document.getElementById('network-canvas');
+  const ctx = canvas.getContext('2d');
+
+  let W, H, nodes = [], mouse = { x: -9999, y: -9999 };
+  const NODE_COUNT = 90;
+  const MAX_DIST = 160;
+  const NODE_COLOR = 'rgba(56,189,248,';
+  const LINE_COLOR = 'rgba(56,189,248,';
+  const ACCENT_COLOR = 'rgba(129,140,248,';
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function createNode() {
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45,
+      r: Math.random() * 1.8 + 1,
+      accent: Math.random() > 0.85
+    };
+  }
+
+  function init() {
+    resize();
+    nodes = [];
+    for (let i = 0; i < NODE_COUNT; i++) nodes.push(createNode());
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // update positions
+    nodes.forEach(n => {
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    });
+
+    // draw connections
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          const alpha = (1 - dist / MAX_DIST) * 0.35;
+          const col = (a.accent || b.accent) ? ACCENT_COLOR : LINE_COLOR;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = col + alpha + ')';
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // mouse proximity lines
+    nodes.forEach(n => {
+      const dx = n.x - mouse.x, dy = n.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 200) {
+        const alpha = (1 - dist / 200) * 0.6;
+        ctx.beginPath();
+        ctx.moveTo(n.x, n.y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.strokeStyle = 'rgba(129,140,248,' + alpha + ')';
+        ctx.lineWidth = 0.9;
+        ctx.stroke();
+      }
+    });
+
+    // draw nodes
+    nodes.forEach(n => {
+      const col = n.accent ? ACCENT_COLOR : NODE_COLOR;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = col + '0.75)';
+      ctx.fill();
+      // glow
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r * 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = col + '0.08)';
+      ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); });
+  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+  init();
+  draw();
+})();
+
+// Scroll reveal for timeline
+const items = document.querySelectorAll('.exp-item');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 150);
+  });
+}, { threshold: 0.1 });
+items.forEach(el => obs.observe(el));
+
+// Nav active state
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+  navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--accent)' : ''; });
+});
+</script>
+</body>
+</html>
