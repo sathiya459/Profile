@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Investment Portfolio | Sathiya Moorthi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/portfolio.css" />
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/profile.jpg" alt="Profile" class="nav-avatar" />
+      <span>Sathiya Moorthi</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#allocation">Allocation</a></li>
+      <li><a href="#sectors">Sectors</a></li>
+      <li><a href="#holdings">Holdings</a></li>
+      <li><a href="#strategy">Strategy</a></li>
+      <li><a href="index.html" style="color: var(--accent); border: 1px solid rgba(201,169,110,0.3); border-radius: 4px; padding: 0 0.75rem;">← Profile</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menu">&#9776;</button>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <header class="hero" id="overview">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-glow g1"></div>
+      <div class="hero-glow g2"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">Indian Equity Portfolio</div>
+      <h1 class="hero-title">Long-Term<br /><em>Wealth Creation</em></h1>
+      <p class="hero-sub">A diversified equity portfolio built across Large Cap, Mid Cap, and Small Cap segments of the Indian stock market — structured for stability, growth, and compounding over a 5–10 year horizon.</p>
+      <div class="hero-stats">
+        <div class="hstat">
+          <span class="hstat-n">43</span>
+          <span class="hstat-l">Total Stocks</span>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <span class="hstat-n">19</span>
+          <span class="hstat-l">Sectors Covered</span>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <span class="hstat-n">85%+</span>
+          <span class="hstat-l">Strong Buy Rated</span>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <span class="hstat-n">5–10yr</span>
+          <span class="hstat-l">Investment Horizon</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="donut-wrap">
+        <svg class="donut-svg" viewBox="0 0 220 220">
+          <circle class="donut-bg" cx="110" cy="110" r="88" />
+          <circle class="donut-ring ring-large" cx="110" cy="110" r="88"
+            stroke-dasharray="276.46 276.46" stroke-dashoffset="0" />
+          <circle class="donut-ring ring-mid" cx="110" cy="110" r="88"
+            stroke-dasharray="193.52 276.46" stroke-dashoffset="-276.46" />
+          <circle class="donut-ring ring-small" cx="110" cy="110" r="88"
+            stroke-dasharray="83.0 276.46" stroke-dashoffset="-469.98" />
+          <text x="110" y="100" class="donut-center-label">Target</text>
+          <text x="110" y="122" class="donut-center-pct">50/35/15</text>
+        </svg>
+        <div class="donut-legend">
+          <div class="dl-item"><span class="dl-dot dl-large"></span><span>Large Cap 50%</span></div>
+          <div class="dl-item"><span class="dl-dot dl-mid"></span><span>Mid Cap 35%</span></div>
+          <div class="dl-item"><span class="dl-dot dl-small"></span><span>Small Cap 15%</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── ALLOCATION SECTION ── -->
+  <section class="section" id="allocation">
+    <div class="section-inner">
+      <div class="section-head">
+        <span class="section-tag">Risk Architecture</span>
+        <h2>Capital Allocation Strategy</h2>
+        <p>Structured across three market cap tiers to balance stability with growth — large caps provide the foundation, mid caps drive growth, small caps provide high-conviction asymmetric opportunities.</p>
+      </div>
+      <div class="alloc-grid">
+        <div class="alloc-card alloc-large">
+          <div class="alloc-pct">50%</div>
+          <div class="alloc-tier">Large Cap</div>
+          <div class="alloc-index">Nifty 50</div>
+          <div class="alloc-desc">The bedrock of the portfolio. Blue-chip companies with proven track records, strong balance sheets, and consistent earnings growth. Lower volatility with reliable long-term compounding.</div>
+          <div class="alloc-chips">
+            <span>18 stocks</span><span>Low Risk</span><span>Nifty 50</span>
+          </div>
+        </div>
+        <div class="alloc-card alloc-mid">
+          <div class="alloc-pct">35%</div>
+          <div class="alloc-tier">Mid Cap</div>
+          <div class="alloc-index">Nifty Next 50 + Midcap 50</div>
+          <div class="alloc-desc">Growth engines of the portfolio. Established companies in high-growth sectors with significant expansion runway. Higher return potential balanced against moderate volatility.</div>
+          <div class="alloc-chips">
+            <span>16 stocks</span><span>Medium Risk</span><span>Nifty Next 50</span>
+          </div>
+        </div>
+        <div class="alloc-card alloc-small">
+          <div class="alloc-pct">15%</div>
+          <div class="alloc-tier">Small Cap</div>
+          <div class="alloc-index">Nifty Smallcap 50</div>
+          <div class="alloc-desc">High-conviction asymmetric bets. Companies at an inflection point with significant multi-bagger potential over 5–10 years. Carefully selected with strong fundamentals and sector tailwinds.</div>
+          <div class="alloc-chips">
+            <span>9 stocks</span><span>High Risk</span><span>Nifty Smallcap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTORS SECTION ── -->
+  <section class="section section-dark" id="sectors">
+    <div class="section-inner">
+      <div class="section-head">
+        <span class="section-tag">Diversification</span>
+        <h2>Sector Coverage</h2>
+        <p>19 sectors represented, each chosen for its structural growth tailwinds within the Indian economy over the next decade.</p>
+      </div>
+      <div class="sector-grid" id="sectorGrid"></div>
+    </div>
+  </section>
+
+  <!-- ── HOLDINGS TABLE ── -->
+  <section class="section" id="holdings">
+    <div class="section-inner">
+      <div class="section-head">
+        <span class="section-tag">Complete Holdings</span>
+        <h2>All 43 Stocks</h2>
+        <p>Every holding with sector, cap tier, performance ratings, and the rationale behind each investment decision.</p>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All (43)</button>
+        <button class="filter-btn" data-filter="Large Cap">Large Cap (18)</button>
+        <button class="filter-btn" data-filter="Mid Cap">Mid Cap (16)</button>
+        <button class="filter-btn" data-filter="Small Cap">Small Cap (9)</button>
+      </div>
+      <div class="table-wrap">
+        <table class="holdings-table" id="holdingsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Symbol</th>
+              <th>Company</th>
+              <th>Sector</th>
+              <th>Cap Tier</th>
+              <th>Index</th>
+              <th>Allocation%</th>
+              <th>Past Perf.</th>
+              <th>Current</th>
+              <th>Outlook</th>
+            </tr>
+          </thead>
+          <tbody id="holdingsTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RATIONALE CARDS ── -->
+  <section class="section section-dark" id="rationale">
+    <div class="section-inner">
+      <div class="section-head">
+        <span class="section-tag">Investment Thesis</span>
+        <h2>Why Each Stock?</h2>
+        <p>Click any holding below to read the detailed investment rationale — the specific reasons behind every position.</p>
+      </div>
+      <div class="rationale-grid" id="rationaleGrid"></div>
+    </div>
+  </section>
+
+  <!-- ── STRATEGY SECTION ── -->
+  <section class="section" id="strategy">
+    <div class="section-inner">
+      <div class="section-head">
+        <span class="section-tag">Investment Philosophy</span>
+        <h2>Portfolio Strategy</h2>
+      </div>
+      <div class="strategy-grid">
+        <div class="strategy-card">
+          <div class="strategy-icon">01</div>
+          <h3>Long-Term Compounding</h3>
+          <p>All positions held with a minimum 3–5 year horizon. Short-term noise is ignored in favour of long-term business quality. LTCG tax benefits (₹1L annual exemption) are factored into the holding strategy.</p>
+        </div>
+        <div class="strategy-card">
+          <div class="strategy-icon">02</div>
+          <h3>Sector Gap Elimination</h3>
+          <p>Every new addition fills an identified sector void. No sector exceeds 20% of portfolio weight. Banking, IT, Pharma, Infra, Defence, FMCG, Insurance, Real Estate and Renewables all represented.</p>
+        </div>
+        <div class="strategy-card">
+          <div class="strategy-icon">03</div>
+          <h3>Quality Over Quantity</h3>
+          <p>Every stock must pass a three-parameter screen: Strong/Moderate past performance (&gt;8% CAGR), Outperform/Neutral current performance, and Hold/Strong Buy future outlook. No Caution-rated stocks retained.</p>
+        </div>
+        <div class="strategy-card">
+          <div class="strategy-icon">04</div>
+          <h3>Thematic Coherence</h3>
+          <p>Stocks are chosen to complement each other — not just diversify randomly. Defence (BEL + HAL + GRSE), Power chain (POWERGRID + CGPOWER + KEC + NTPC + WAAREEENER), Pharma (SUNPHARMA + DRREDDY + DIVISLAB) all form coherent themes.</p>
+        </div>
+        <div class="strategy-card">
+          <div class="strategy-icon">05</div>
+          <h3>Risk Management</h3>
+          <p>15% stop-loss on all small cap positions. No single stock exceeds 8% of portfolio. Quarterly review of all holdings. Annual rebalancing to maintain 50/35/15 target allocation. Dividend reinvestment into the underweight tier.</p>
+        </div>
+        <div class="strategy-card">
+          <div class="strategy-icon">06</div>
+          <h3>India Growth Story</h3>
+          <p>The portfolio is a concentrated bet on India's next decade — urbanisation, financialisation of savings, defence indigenisation, energy transition, digital infrastructure, and the rise of the Indian consumer. Every holding maps to at least one of these macro themes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PERFORMANCE RATINGS LEGEND ── -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-head">
+        <span class="section-tag">Reference</span>
+        <h2>Rating Definitions</h2>
+      </div>
+      <div class="legend-grid">
+        <div class="legend-group">
+          <h4>Past Performance</h4>
+          <div class="legend-item"><span class="legend-badge badge-strong">Strong</span><span>&gt;15% 3-Year CAGR — sustained above-market returns</span></div>
+          <div class="legend-item"><span class="legend-badge badge-moderate">Moderate</span><span>8–15% CAGR — steady, in-line growth</span></div>
+          <div class="legend-item"><span class="legend-badge badge-weak">Weak</span><span>&lt;8% CAGR — below market performance</span></div>
+        </div>
+        <div class="legend-group">
+          <h4>Current Performance</h4>
+          <div class="legend-item"><span class="legend-badge badge-strong">Outperform</span><span>Above sector peers on key financial metrics</span></div>
+          <div class="legend-item"><span class="legend-badge badge-moderate">Neutral</span><span>In line with sector average — stable</span></div>
+          <div class="legend-item"><span class="legend-badge badge-weak">Underperform</span><span>Lagging sector peers — under watch</span></div>
+        </div>
+        <div class="legend-group">
+          <h4>Future Outlook</h4>
+          <div class="legend-item"><span class="legend-badge badge-strong">Strong Buy</span><span>High 2–5 year return potential — add or hold</span></div>
+          <div class="legend-item"><span class="legend-badge badge-moderate">Hold</span><span>Steady outlook — monitor, do not add</span></div>
+          <div class="legend-item"><span class="legend-badge badge-weak">Caution</span><span>Risks outweigh upside — reduce exposure</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-disc">Disclaimer: This portfolio page is for personal documentation and informational purposes only. Nothing here constitutes financial advice. All investment decisions carry risk. Past performance does not guarantee future returns. Please consult a SEBI-registered financial advisor before making any investment decisions.</p>
+      <p class="footer-copy">© 2025 Sathiya Moorthi · Portfolio data updated as of 2025. &nbsp;<a href="index.html" style="color: var(--accent); text-decoration: none;">← Back to Profile</a></p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/portfolio.js"></script>
+</body>
+</html>
